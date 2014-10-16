@@ -34,8 +34,8 @@
             <!--
             the processor artifact is required only during compilation and
             does not need to be transitive, hence provided scope
-            -->
-            <scope>provided</scope>
+
+            <scope>provided</scope>-->
         </dependency>
 
 

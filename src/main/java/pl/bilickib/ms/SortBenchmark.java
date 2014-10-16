@@ -1,4 +1,4 @@
-package pl.bilickib.ms.sort;
+package pl.bilickib.ms;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
@@ -36,12 +36,12 @@ public class SortBenchmark {
 
     @Benchmark
     public int sumHalfElements() {
-        return sumElemensAboveThreshold(randomArray,MAX/2);
+        return sumElemensAboveThreshold(randomArray, MAX / 2); //if not used may be optimized out
     }
 
     @Benchmark
     public int sumAllElements() {
-        return sumElemensAboveThreshold(randomArray,MAX);
+        return sumElemensAboveThreshold(randomArray, MAX); //if not used may be optimized out
     }
 
     private int sumElemensAboveThreshold(int[] array,int threshold) {
@@ -59,10 +59,23 @@ public class SortBenchmark {
                 .forks(1)
                 .shouldDoGC(true)
                 .jvmArgs("-Xms812m", "-Xmx812m") //we do not want heap resize during test
-                //.warmupIterations(1)
+                .warmupIterations(1)
                 .measurementIterations(1)
                 .build();
 
         new Runner(opt).run();
     }
+
+    /**
+     * use primitives for arrays and values
+     * - If you have a lot of data.
+     * - If you operate on the data often.
+     * - If you create data often.
+     * - If data is long-living.
+     *
+     *  fastutil, PCJ, GNU Trove, Apache Mahout (ported COLT collections), Apache Primitive Collections.
+     *  http://labs.carrotsearch.com/hppc-faq.html#why-yet-another-collections-package
+     */
+
+
 }
