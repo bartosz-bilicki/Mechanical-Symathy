@@ -10,10 +10,10 @@ import java.util.Arrays;
 import java.util.Random;
 
 @State(Scope.Thread)
-public class SortBenchmark {
+public class E01_SortBenchmark {
     private static final int SEED=123;
     private static final int MAX=256;
-    private static final int SIZE=100_000;
+    private static final int SIZE=1_000_000;
 
     @Param(value = {"false", "true"})
     public boolean sorted;
@@ -55,27 +55,18 @@ public class SortBenchmark {
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(SortBenchmark.class.getSimpleName())
+                .include(E01_SortBenchmark.class.getSimpleName())
                 .forks(1)
                 .shouldDoGC(true)
                 .jvmArgs("-Xms812m", "-Xmx812m") //we do not want heap resize during test
                 .warmupIterations(1)
+                //.mode(Mode.SingleShotTime)
                 .measurementIterations(1)
                 .build();
 
         new Runner(opt).run();
     }
 
-    /**
-     * use primitives for arrays and values
-     * - If you have a lot of data.
-     * - If you operate on the data often.
-     * - If you create data often.
-     * - If data is long-living.
-     *
-     *  fastutil, PCJ, GNU Trove, Apache Mahout (ported COLT collections), Apache Primitive Collections.
-     *  http://labs.carrotsearch.com/hppc-faq.html#why-yet-another-collections-package
-     */
 
 
 }

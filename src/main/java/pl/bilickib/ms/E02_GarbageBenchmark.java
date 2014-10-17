@@ -3,14 +3,12 @@ package pl.bilickib.ms;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.profile.GCProfiler;
-import org.openjdk.jmh.profile.HotspotMemoryProfiler;
-import org.openjdk.jmh.profile.HotspotRuntimeProfiler;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
-public class GarbageBenchmark {
+public class E02_GarbageBenchmark {
 
     private static final int SIZE=40_000_000;
 
@@ -72,13 +70,14 @@ public class GarbageBenchmark {
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(GarbageBenchmark.class.getSimpleName())
+                .include(E02_GarbageBenchmark.class.getSimpleName())
                 .forks(1)
                 .shouldDoGC(true)
-                //.jvmArgs("-Xms300m", "-Xmx812m", "-verbose:gc", "-XX:+PrintGCTimeStamps", "-XX:+PrintGCDetails")
+                //.jvmArgs("-Xms300m", "-Xmx812m", "-verbose:gc", "-XX:+PrintGCTimeStamps", "-XX:+PrintGCDetails") //addProfiler(GCProfiler.class)  is better
                 .jvmArgs("-Xms300m","-Xmx812m")
                 .warmupIterations(1)
                 .measurementIterations(5)
+
                 .addProfiler(GCProfiler.class) //formating bug. ingore ,000 for gc.time.
                 .mode(Mode.SingleShotTime)
                 //we are interested in gc.count.profiled, tc.time.profiled- thhose are GC count and time during test
@@ -87,4 +86,16 @@ public class GarbageBenchmark {
 
         new Runner(opt).run();
     }
+
+
+    /**
+     * use primitives for arrays and values
+     * - If you have a lot of data.
+     * - If you operate on the data often.
+     * - If you create data often.
+     * - If data is long-living.
+     *
+     *  fastutil, PCJ, GNU Trove, Apache Mahout (ported COLT collections), Apache Primitive Collections.
+     *  http://labs.carrotsearch.com/hppc-faq.html#why-yet-another-collections-package
+     */
 }
