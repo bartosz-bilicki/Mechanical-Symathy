@@ -38,7 +38,8 @@ public class E03_LoopBenchmark {
                 .include(E03_LoopBenchmark.class.getSimpleName())
                 .forks(1)
                 .shouldDoGC(true)
-                .jvmArgs("-Xms812m", "-Xmx812m","-XX:+PrintCompilation","-XX:+PrintInlining") //we do not want heap resize during test
+                .jvmArgs("-Xms812m", "-Xmx812m","-XX:+UnlockDiagnosticVMOptions","-XX:+PrintCompilation") //we do not want heap resize during test
+                //,"-XX:+PrintInlining"
                 /* timestamp compilation_id attributes (tiered_level) method_name size
                     attributes
                     % - on stack replacement

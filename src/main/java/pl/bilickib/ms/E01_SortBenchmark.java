@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 @State(Scope.Thread)
+
 public class E01_SortBenchmark {
     private static final int SEED=123;
     private static final int MAX=256;
@@ -66,7 +67,55 @@ public class E01_SortBenchmark {
 
         new Runner(opt).run();
     }
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+the difference between an L1D cache-hit, and a full miss resulting in main-memory access,
+        is 2 orders of magnitude; i.e. <1ns vs. 65-100ns
+
+Translation Lookaside Buffers (TLBs)
+    caches (part of) page table
+    page table translate virtual memory address to phisical memory address.
+    (all memory allocation is in pages)
+    bigger pages= more chance of TLB hit.
+    TLB miss=delay
+*/

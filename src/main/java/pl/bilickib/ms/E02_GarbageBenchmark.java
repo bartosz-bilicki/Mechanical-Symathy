@@ -30,7 +30,7 @@ public class E02_GarbageBenchmark {
         return ret;
     }
 
-    //@Benchmark
+    @Benchmark
     public  int[] intArrayIntegerValueOfValue() {
         int[] ret=new int[SIZE];
         for (int i=0;i<SIZE;i++) {
@@ -39,7 +39,7 @@ public class E02_GarbageBenchmark {
         return ret;
     }
 
-    //@Benchmark
+    @Benchmark
     public  Integer[] integerArrayIntegerValue() {
         Integer[] ret=new Integer[SIZE];
         for (int i=0;i<SIZE;i++) {
@@ -48,7 +48,7 @@ public class E02_GarbageBenchmark {
         return ret;
     }
 
-    //@Benchmark
+    @Benchmark
     public  Integer[] integerArrayIntValue() {
         Integer[] ret=new Integer[SIZE];
         for (int i=0;i<SIZE;i++) {
@@ -57,7 +57,7 @@ public class E02_GarbageBenchmark {
         return ret;
     }
 
-    //@Benchmark
+    @Benchmark
     public  Integer[] integerArrayIntegerValueOfValue() {
         Integer[] ret=new Integer[SIZE];
         for (int i=0;i<SIZE;i++) {
@@ -95,7 +95,7 @@ public class E02_GarbageBenchmark {
      * - If you create data often.
      * - If data is long-living.
      *
-     *  fastutil, PCJ, GNU Trove, Apache Mahout (ported COLT collections), Apache Primitive Collections.
-     *  http://labs.carrotsearch.com/hppc-faq.html#why-yet-another-collections-package
+     *  fastutil, PCJ, GNU Trove, Apache Mahout (ported COLT collections), Apache Primitive Collections, HPPC
+     *
      */
 }
